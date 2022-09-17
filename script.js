@@ -140,5 +140,5 @@ setInterval(() => {
   timeSpent = (currentTime - startTime) / 1000;
 
 
-  document.getElementById("show-time").innerHTML = `${(startTime && timeSpent < timeTaken) ? timeSpent.toFixed(2) : timeTaken.toFixed(2)} seconds`;
+  document.getElementById("show-time").innerHTML = `${(startTime || timeSpent < timeTaken) ? timeSpent.toFixed(2) : timeTaken.toFixed(2)} seconds`;
 }, 100);
