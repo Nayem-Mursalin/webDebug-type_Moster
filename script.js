@@ -6,6 +6,8 @@ const resultModal = document.getElementById("result");
 const modalBackground = document.getElementById("modal-background");
 let timeSpent = 0;
 let timeTaken = 0;
+let totalWord = 0;
+let typingSpeed = 0;
 
 // variables
 let userText = "";
@@ -19,6 +21,7 @@ fetch("./texts.json")
   .then((data) => {
     questionText = data[Math.floor(Math.random() * data.length)];
     question.innerHTML = questionText;
+    totalWord = questionText.split(' ').length;
   });
 
 // checks the user typed character and displays accordingly
@@ -87,10 +90,12 @@ const gameOver = () => {
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken.toFixed(0)}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
+    <p>Typing Speed : ${typingSpeed.toFixed(0)} WPM</p>
+    <br>
     <button onclick="closeModal()">Close</button>
   `;
 
-  addHistory(questionText, timeTaken, errorCount);
+  addHistory(questionText, timeTaken, errorCount, typingSpeed);
 
   // restart everything
   startTime = null;
@@ -138,7 +143,7 @@ displayHistory();
 setInterval(() => {
   const currentTime = new Date().getTime();
   timeSpent = (currentTime - startTime) / 1000;
-
+  typingSpeed = totalWord / (timeSpent / 60);
 
   document.getElementById("show-time").innerHTML = `${(startTime || timeSpent < timeTaken) ? timeSpent.toFixed(0) : timeTaken.toFixed(0)} seconds`;
 }, 100);
