@@ -191,3 +191,18 @@ button {
   }
 }
 
+@media only screen and (min-width: 992px) {
+  #histories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+  .card {
+    flex-direction: column;
+    padding: 10px 15px;
+    width: 90%;
+    height: 90%;
+  }
+}
