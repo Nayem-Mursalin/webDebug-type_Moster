@@ -5,7 +5,7 @@ const countdownOverlay = document.getElementById("countdown");
 const resultModal = document.getElementById("result");
 const modalBackground = document.getElementById("modal-background");
 let timeSpent = 0;
-let timeTaken;
+let timeTaken = 0;
 
 // variables
 let userText = "";
@@ -140,5 +140,5 @@ setInterval(() => {
   timeSpent = (currentTime - startTime) / 1000;
 
 
-  document.getElementById("show-time").innerHTML = `${(startTime) ? timeSpent.toFixed(2) : 0} seconds`;
+  document.getElementById("show-time").innerHTML = `${(startTime && timeSpent < timeTaken) ? timeSpent.toFixed(2) : timeTaken.toFixed(2)} seconds`;
 }, 100);
